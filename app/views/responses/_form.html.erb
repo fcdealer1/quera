@@ -1,21 +1,3 @@
-<p id="notice"><%= notice %></p>
-
-<p><h2>
-  <strong>Question:</strong>
-  <%= @article.title %>
-</p>
-</h2>
-<p>
-
-  by <%= @article.name %>
-</p>
-
-
-
-
-
-<h3>Can you answer this open question?</h3>
-
 <%= form_for(@response) do |f| %>
   <% if @response.errors.any? %>
     <div id="error_explanation">
@@ -33,46 +15,19 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
-
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
   <div class="field">
     <%= f.label :content %><br>
-    <%= f.text_area:content %>
+    <%= f.text_area :content %>
+  </div>
+  <div class="field">
+    <%= f.label :article_id %><br>
+    <%= f.number_field :article_id %>
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
-
-
-
-
-
-
-
-  <% @article.responses.each do |response| %>
-
-<p class="ridge">
-  <%= response.email %>
-
-</p>
-<p>
-  <%= response.name%><br>
-
-  <%= simple_format response.content %>
-
-   <br>
-  <%= response.updated_at %>
-</p>
-
-  <% end %>
-
-
-
-
-
-
-
-
-
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>

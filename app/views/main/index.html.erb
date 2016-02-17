@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+p.dotted {border-style: dotted;}
+p.dashed {border-style: dashed;}
+p.solid {border-style: solid;}
+p.double {border-style: double;}
+p.groove {border-style: groove;}
+p.ridge {border-style: ridge;}
+p.inset {border-style: inset;}
+p.outset {border-style: outset;}
+p.none {border-style: none;}
+p.hidden {border-style: hidden;}
+p.mix {border-style: dotted dashed solid double;}
+</style>
+</head>
+
+
+
+
+<h1>Q&A</h1>
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Post new Question', new_article_path %>
+
+<% @articles.each do |article| %>
+<h2>
+
+  <%= link_to(article.content, article_path(article)) %><br>
+
+</h2>
+<p>
+
+  by <%= article.name%>
+  <br>
+  updated at <%= article.updated_at %>
+</p>
+
+
+<h3>Can you answer this open question?</h3>
+
+
+
+
+<%= form_for(@response) do |f| %>
+  <% if @response.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@response.errors.count, "error") %> prohibited this response from being saved:</h2>
+
+      <ul>
+      <% @response.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.text_area :content %>
+  </div>
+  <div>
+
+    <%= f.hidden_field :article_id, :value => article.id %>
+  </div>
+  <div class="actions">
+    <%= f.submit "answer IT!"%>
+  </div>
+<% end %>
+
+
+
+
+
+
+
+  <% article.responses.each do |response| %>
+
+<p class="ridge">
+  <%= response.email %>
+
+</p>
+<p>
+  <%= response.name%><br>
+
+  <%= simple_format response.content %>
+
+   <br>
+  <%= response.updated_at %>
+</p>
+
+  <% end %>
+
+
+
+
+
+
+
+<% end %>
+
+
+
+</style>
