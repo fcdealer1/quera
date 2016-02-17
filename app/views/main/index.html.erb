@@ -24,19 +24,20 @@ p.mix {border-style: dotted dashed solid double;}
 
 <%= link_to 'Post new Question', new_article_path %>
 
+
+<p>
 <% @articles.each do |article| %>
 <h2>
-
+  <p class="solid"></p>
   <%= link_to(article.content, article_path(article)) %><br>
 
 </h2>
-<p>
+
 
   by <%= article.name%>
   <br>
   updated at <%= article.updated_at %>
 </p>
-
 
 <h3>Can you answer this open question?</h3>
 
@@ -70,8 +71,9 @@ p.mix {border-style: dotted dashed solid double;}
     <%= f.hidden_field :article_id, :value => article.id %>
   </div>
   <div class="actions">
-    <%= f.submit "answer IT!"%>
+    <%= f.submit "answer IT!" %>
   </div>
+
 <% end %>
 
 
